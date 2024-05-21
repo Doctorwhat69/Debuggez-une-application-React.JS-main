@@ -1,8 +1,9 @@
 /* eslint-disable no-return-assign */
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
-
 import "./style.scss";
+
+// ajout des ID pour rediriger vers les sections
 
 const Menu = () => (
   <nav>
@@ -18,7 +19,10 @@ const Menu = () => (
         <a href="#notre-equipe">Notre équipe</a>
       </li>
     </ul>
-    <Button title="contact" onClick={() => (window.document.location.hash = "#contact")}>
+    <Button
+      title="contact"
+      onClick={() => (window.document.location.hash = "#contact")}
+    >
       Contact
     </Button>
   </nav>
