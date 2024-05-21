@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
@@ -23,12 +23,14 @@ const Slider = () => {
   useEffect(() => {
     nextCard();
   }, [index, byDateDesc]);
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        // ajout du fragment et des correctifs des keys
+        <div key={`fragment-${event.id}`}>
           <div
-            key={event.title}
+            key={`evenement-${event.id}`}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -47,18 +49,19 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((event2, radioIdx) => (
                 <input
-                  key={`${event.id} ${event2.id}`}
+                  key={`${event.id}-${event2.id}`}
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
+                  readOnly
                 />
+                // ajout de readOnly
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
 };
-
 export default Slider;
