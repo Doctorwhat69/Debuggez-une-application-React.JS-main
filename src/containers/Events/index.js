@@ -13,24 +13,33 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = ((!type ? data?.events : data?.events) || []).filter(
-    (_, index) => {
-      if (
-        (currentPage - 1) * PER_PAGE <= index &&
-        PER_PAGE * currentPage > index
-      ) {
-        return true;
-      }
-      return false;
-    }
-  );
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
 
+  const byDateDesc = data?.events?.sort((evtA, evtB) =>
+    new Date(evtA.date) > new Date(evtB.date) ? 0 : 1
+  );
+
+  const filteredEventsByType = !type
+    ? byDateDesc
+    : byDateDesc.filter((event) => event.type === type);
+
+  const filteredEvents = filteredEventsByType?.filter((_, index) => {
+    if (
+      (currentPage - 1) * PER_PAGE <= index &&
+      PER_PAGE * currentPage > index
+    ) {
+      return true;
+    }
+    return false;
+  });
+
+  const pageNumber = Math.ceil((filteredEventsByType?.length || 0) / PER_PAGE);
+
+  // sert pour la prop selection
   const typeList = new Set(data?.events.map((event) => event.type));
 
-  const changeType = (evtType) => {
+  const changeType = (event) => {
     setCurrentPage(1);
-    setType(evtType);
+    setType(event);
   };
 
   return (

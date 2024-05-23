@@ -17,13 +17,9 @@ import { useData } from "../../contexts/DataContext";
 const Page = () => {
   const { data } = useData();
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-  // retourne l'element le plus recent de la copie du tableau "data" trié par ordre decroissant (utilisation de map et de sort)
-  const last = data.events
-    .map((event) => ({ ...event, date: new Date(event.date) }))
-    .sort((a, b) => b.date - a.date)[0];
+  const last = data?.events
+    ?.map((event) => ({ ...event, date: new Date(event.date) }))
+    .sort((a, b) => b.date - a.date)?.[0];
 
   return (
     <>
@@ -125,7 +121,7 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre derniére prestation</h3>
-          <Modal key={last.id} Content={<ModalEvent event={last} />}>
+          <Modal key={last?.id} Content={<ModalEvent event={last} />}>
             {({ setIsOpened }) => (
               <EventCard
                 onClick={() => setIsOpened(true)}
