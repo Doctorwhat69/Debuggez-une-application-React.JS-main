@@ -15,7 +15,7 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const byDateDesc = data?.events?.sort((evtA, evtB) =>
-    new Date(evtA.date) > new Date(evtB.date) ? 0 : 1
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
 
   const filteredEventsByType = !type
