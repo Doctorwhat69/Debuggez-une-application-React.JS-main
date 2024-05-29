@@ -22,7 +22,8 @@ const EventList = () => {
     ? byDateDesc
     : byDateDesc.filter((event) => event.type === type);
 
-  const filteredEvents = filteredEventsByType?.filter((_, index) => {
+ 
+    const filteredEvents = filteredEventsByType?.filter((_, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index
@@ -32,6 +33,7 @@ const EventList = () => {
     return false;
   });
 
+  
   const pageNumber = Math.ceil((filteredEventsByType?.length || 0) / PER_PAGE);
 
   // sert pour la prop selection
@@ -71,8 +73,9 @@ const EventList = () => {
                 </Modal>
               ))
             ) : (
-              <div>No events found</div>
+              <div>Aucun Evènement trouvé</div>
             )}
+            
           </div>
           <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
