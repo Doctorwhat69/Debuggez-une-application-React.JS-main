@@ -129,7 +129,7 @@ const Page = () => {
                 title={last?.title}
                 date={new Date(last?.date)}
                 small
-                label="boom"
+                label={last?.type}
               />
             )}
           </Modal>
