@@ -131,7 +131,7 @@ const Page = () => {
             {({ setIsOpened }) => (
               <EventCard
                 onClick={() => setIsOpened(true)}
-                imageSrc={`${process.env.PUBLIC_URL}${last?.cover}`}
+                imageSrc={last?.cover}
                 title={last?.title}
                 date={new Date(last?.date)}
                 small
