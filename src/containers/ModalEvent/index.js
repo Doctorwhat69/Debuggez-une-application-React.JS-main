@@ -7,7 +7,7 @@ const ModalEvent = ({ event }) => (
     <div className="ModalEvent__imageContainer">
       <img
         data-testid="card-image-testid"
-        src={event.cover}
+        src={`${process.env.PUBLIC_URL}${event.cover}`}
         alt={event.title}
       />
     </div>

@@ -35,7 +35,7 @@ const Slider = () => {
               index === idx ? "display" : "hide"
             }`}
           >
-            <img src={event.cover} alt="forum" />
+            <img src={`${process.env.PUBLIC_URL}${event.cover}`} alt="forum" />
             <div className="SlideCard__descriptionContainer">
               <div className="SlideCard__description">
                 <h3>{event.title}</h3>
