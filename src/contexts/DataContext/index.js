@@ -11,7 +11,10 @@ const DataContext = createContext({});
 
 export const api = {
   loadData: async () => {
-    const json = await fetch("/events.json");
+    const json = await fetch(`${process.env.PUBLIC_URL}/events.json`);
+    if (!json.ok) {
+      throw new Error("Network response was not ok");
+    }
     return json.json();
   },
 };
